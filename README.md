@@ -8,17 +8,3 @@ The file can be downloaded here https://github.com/Microsoft/sql-server-samples/
 
 ## Questions and the solutions
 ### 1. Retrieve from product tables all colours except blanks,Red, silver/black and white with unit price between £75 and £750. Rename the column standard cost price. Sort price in ascending order.
-SELECT Color, StandardCost AS StandardCost_Price
-FROM Production.Product
-WHERE  Color != 'Red' AND Color!='Silver/Black' AND Color!='White' AND Color IS NOT NULL AND StandardCost BETWEEN 75 AND 750
-ORDER BY StandardCost
-
-Color	StandardCost_Price
-Black	77.9176
-Black	92.8071
-Black	96.7964
-Black	104.7951
-Black	108.7844
-Black	110.2829
-Black	113.8816
-Black	122.2709
