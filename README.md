@@ -7,3 +7,4 @@ The Adventure Works database represents a fictional bicycle manufacturing compan
 The file can be downloaded here https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorks2022.bak
 
 ## Questions and the solutions
+### 1. Retrieve from product tables all colours except blanks,Red, silver/black and white with unit price between £75 and £750. Rename the column standard cost price. Sort price in ascending order.
