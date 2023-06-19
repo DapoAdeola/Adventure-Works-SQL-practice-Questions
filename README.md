@@ -19,19 +19,6 @@ The file can be downloaded here https://github.com/Microsoft/sql-server-samples/
 ### 10. How many employees will be due a long service award in the next 5 years if long service is 20 years?
 ### 11. How many more years does each employee have to work before reaching sentiment. If sentiment age is 65? 
 ### 12. Derive the week day, month name and year from the hire. Also how long has each female employee been employed?
-### 13. Implement new price policy on the product table base on the colour of the item
-If white increase price by 8%
-If yellow reduce price by 7.5%
-If black increase price by 17.2%
-If multi, silver, silver/black or blue take the square root of the price and double the value. Column should be called Newprice, while other colours remain thesame. For each item, also calculate commission as 37.5% of newly computed list price.
-
+### 13. Implement new price policy on the product table base on the colour of the item If white increase price by 8%, If yellow reduce price by 7.5%, If black increase price by 17.2%, If multi, silver, silver/black or blue take the square root of the price and double the value. Column should be called Newprice, while other colours remain thesame. For each item, also calculate commission as 37.5% of newly computed list price.
 ### 14. I would like information Sales.Person and their sales quota. For every Sales person should have a FirstName, LastName, HireDate, SickLeave Hours and Region where they Work
-### 15. Using adventure works, write a query to extract a data table that must contain the following variables:
- Product name
- Product category name
- Product subcategory name
- Sales person
- Revenue
- Month of transaction
- Quarter of transaction
- Region
+### 15. Using adventure works, write a query to extract a data table that must contain the following variables:  Product name  Product category name  Product subcategory name  Sales person  Revenue  Month of transaction  Quarter of transaction  Region
