@@ -70,8 +70,22 @@ The file can be downloaded here https://github.com/Microsoft/sql-server-samples/
 ![1515](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/1b16b696-4353-4384-8a56-943829d644d5)
 
 ### 16. Produce an up to date report on all products sold between January and December 2007, showing number of sales, sales proportions the financial performance. Ensure your analysis can be used to determine whether there is growth or decline on any of the product lines.
+![16](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/09d72239-c480-469e-8c55-905a3ba21a15)
+![161](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/27695e41-43eb-4de5-b2f4-8c02ed751534)
+
 #### Compare 2007 and 2008 figures to highlight year on year results.
+![162](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/9378e641-b56a-4477-9ebb-89b25edcd4e9)
+![163](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/9c7072f7-9a0c-4e3e-a5fc-3085f5ff2212)
+
 #### Reproduce the report at higher levels such as Product category and sub category.
+![164](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/528bf666-b340-46ed-b1a4-7aac94764acc)
+![165](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/7927ff42-92e5-4b6b-b73a-e3b80ae0c567)
+
 #### What key products are the drivers of performance?
+![166](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/a5b23efe-9958-48e5-81d2-2c9c209d1236)
+![167](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/81c53292-e669-4077-bd74-48f26bfe58de)
+
 #### If we would like to discontinue any product sub categories due to poor outcomes, what would this be? 
+![168](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/6e3724b4-6d24-47ed-8be5-85865b74de2b)
+![169](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/6b4c7aff-d7f0-4c1e-b757-6bb5387e58aa)
 
