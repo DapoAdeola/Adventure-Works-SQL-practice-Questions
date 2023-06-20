@@ -13,6 +13,7 @@ The file can be downloaded here https://github.com/Microsoft/sql-server-samples/
 
 ### 2. Find all male employees born from 1962 to 1970 and their hire date greater than 2001 and female employees born between 1972 to 1975 and hire date between 2001/2002.
 ![2](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/ae717019-f456-483b-99fc-7329045f6ab7)
+
 ![22](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/fa369074-e187-456d-a035-7d7714359ac6)
 
 ### 3. Create a list of 10 most expensive products from the Production.Product table that have a product number beginning with ‘BK’. Include only the product ID, Name and colour.
