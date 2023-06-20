@@ -1,4 +1,4 @@
--- 1. Retrieve from product tables all colours except blanks,Red, silver/black and white with unit price between £75 and £750.
+-- 1. Retrieve from product tables all colours except blanks,Red, silver/black and white with unit price between ¬£75 and ¬£750.
 --Rename the column standard cost price. Sort price in ascending order.
 
 SELECT Color, StandardCost AS StandardCost_Price
@@ -23,7 +23,7 @@ WHERE
 	AND YEAR(HireDate) BETWEEN 2001 AND 2002)
 
 
---3 Create a list of 10 most expensive products from the Production.Product table that have a product number beginning with ëBKí.  
+--3 Create a list of 10 most expensive products from the Production.Product table that have a product number beginning with ‚ÄòBK‚Äô.  
 --Include only the product ID, Name and colour.
 
 SELECT TOP 10 ProductID, Name, Color
@@ -75,8 +75,8 @@ FROM Production.Product
 
 
  --7.	Create a list of product segmentation by defining criteria that places each item in a predefined segment as follows. 
- --If price gets less than £200 then low value. If price is between £201 and £750 then mid value. 
- --If between £750 and £1250 then mid to high value else higher value.  For colours ìblack, silver and redî products.
+ --If price gets less than ¬£200 then low value. If price is between ¬£201 and ¬£750 then mid value. 
+ --If between ¬£750 and ¬£1250 then mid to high value else higher value.  For colours ‚Äúblack, silver and red‚Äù products.
 
  SELECT Name, Color, ListPrice,
 		CASE
@@ -163,14 +163,14 @@ LEFT JOIN Sales.SalesTerritory AS ST ON SP.TerritoryID=ST.TerritoryID
 
 
 --15.	 Using adventure works, write a query to extract a  data table that must contain the following variables:
---ï	Product name
---ï	Product category name
---ï	Product subcategory name 
---ï	Sales person
---ï	Revenue
---ï	Month of transaction 
---ï	Quarter of transaction
---ï	Region 
+--‚Ä¢	Product name
+--‚Ä¢	Product category name
+--‚Ä¢	Product subcategory name 
+--‚Ä¢	Sales person
+--‚Ä¢	Revenue
+--‚Ä¢	Month of transaction 
+--‚Ä¢	Quarter of transaction
+--‚Ä¢	Region 
 
 SELECT  p.Name AS ProductName,
     pc.Name AS ProductCategoryName,
@@ -199,6 +199,125 @@ LEFT JOIN
 GROUP BY pp.FirstName, pp.LastName, p.Name, pc.Name, psc.Name, s.OrderDate, s.OrderDate, st.Name
 
 
+--16. A report on all products sold between January and December 2012, showing number of sales, sales proportions and the financial performance. 
+--Ensure your analysis can be used to determine whether there is growth or decline on any of the product lines.
+
+SELECT
+    P.ProductID,
+    P.Name AS ProductName,
+    P.ProductLine,
+	YEAR(soh.OrderDate) AS Year,
+    SUM(sod.LineTotal) AS TotalSales,
+    SUM(sod.LineTotal) / SUM(SUM(SOD.LineTotal)) OVER () AS SalesProportion,
+    SUM(sod.LineTotal) - LAG(SUM(SOD.LineTotal)) OVER (PARTITION BY P.ProductLine ORDER BY P.ProductID) AS SalesGrowth
+FROM
+    Sales.SalesOrderDetail AS SOD
+    INNER JOIN Production.Product AS P ON P.ProductID = SOD.ProductID
+    INNER JOIN Sales.SalesOrderHeader AS SOH ON SOH.SalesOrderID = SOD.SalesOrderID
+WHERE
+    YEAR(SOH.OrderDate) = '2012' 
+GROUP BY
+    P.ProductID, P.Name, P.ProductLine, YEAR(SOH.OrderDate)
+ORDER BY ProductName
+
+
+--Compare 2012 and 2013 figures to highlight year on year results.
+SELECT
+    P.ProductID,
+    P.Name AS ProductName,
+    P.ProductLine,
+    SUM(CASE WHEN YEAR(SOH.OrderDate) = 2012 THEN SOD.LineTotal ELSE 0 END) AS TotalSales_2012,
+    SUM(CASE WHEN YEAR(SOH.OrderDate) = 2013 THEN SOD.LineTotal ELSE 0 END) AS TotalSales_2013,
+    SUM(CASE WHEN YEAR(SOH.OrderDate) = 2013 THEN SOD.LineTotal ELSE 0 END) - SUM(CASE WHEN YEAR(SOH.OrderDate) = 2012 THEN SOD.LineTotal ELSE 0 END) AS SalesGrowth
+FROM
+    Sales.SalesOrderDetail AS SOD
+    INNER JOIN Production.Product AS P ON P.ProductID = SOD.ProductID
+    INNER JOIN Sales.SalesOrderHeader AS SOH ON SOH.SalesOrderID = SOD.SalesOrderID
+WHERE
+    YEAR(SOH.OrderDate) IN (2012, 2013)
+GROUP BY
+    P.ProductID, P.Name, P.ProductLine
+
+
+--Reproduce the report at higher levels such as Product category and sub category.
+SELECT
+    PC.ProductCategoryID,
+    PC.Name AS ProductCategory,
+    PSC.ProductSubcategoryID,
+    PSC.Name AS ProductSubcategory,
+    SUM(CASE WHEN YEAR(SOH.OrderDate) = 2012 THEN SOD.LineTotal ELSE 0 END) AS TotalSales_2012,
+    SUM(CASE WHEN YEAR(SOH.OrderDate) = 2013 THEN SOD.LineTotal ELSE 0 END) AS TotalSales_2013,
+    SUM(CASE WHEN YEAR(SOH.OrderDate) = 2013 THEN SOD.LineTotal ELSE 0 END) - SUM(CASE WHEN YEAR(SOH.OrderDate) = 2012 THEN SOD.LineTotal ELSE 0 END) AS SalesGrowth
+FROM
+    Sales.SalesOrderDetail AS SOD
+    INNER JOIN Production.Product AS P ON P.ProductID = SOD.ProductID
+    INNER JOIN Production.ProductSubcategory AS PSC ON PSC.ProductSubcategoryID = P.ProductSubcategoryID
+    INNER JOIN Production.ProductCategory AS PC ON PC.ProductCategoryID = PSC.ProductCategoryID
+    INNER JOIN Sales.SalesOrderHeader AS SOH ON SOH.SalesOrderID = SOD.SalesOrderID
+WHERE
+    YEAR(SOH.OrderDate) IN (2012, 2013)
+GROUP BY
+    PC.ProductCategoryID, PC.Name, PSC.ProductSubcategoryID, PSC.Name;
+
+
+--What key products are the drivers of performance?
+WITH SalesData AS (
+    SELECT
+        P.ProductID,
+        P.Name AS ProductName,
+        PC.ProductCategoryID,
+        PSC.Name AS ProductCategory,
+        P.ProductSubcategoryID,
+        PC.Name AS ProductSubcategory,
+        SUM(SOD.LineTotal) AS TotalSales
+    FROM
+        Sales.SalesOrderDetail AS SOD
+		INNER JOIN Production.Product AS P ON P.ProductID = SOD.ProductID
+		INNER JOIN Production.ProductSubcategory AS PSC ON PSC.ProductSubcategoryID = P.ProductSubcategoryID
+		INNER JOIN Production.ProductCategory AS PC ON PC.ProductCategoryID = PSC.ProductCategoryID
+		INNER JOIN Sales.SalesOrderHeader AS SOH ON SOH.SalesOrderID = SOD.SalesOrderID
+    WHERE
+        YEAR(SOH.OrderDate) IN (2012, 2013)
+    GROUP BY
+        P.ProductID, P.Name, PC.ProductCategoryID, PSC.Name, P.ProductSubcategoryID, PC.Name
+	)
+SELECT
+    *,
+    RANK() OVER (ORDER BY TotalSales DESC) AS SalesRank
+FROM
+    SalesData
+ORDER BY
+    SalesRank ASC
+
+
+--If we would like to discontinue any product sub categories due to poor outcomes, what would this be? 
+WITH SalesData AS (
+    SELECT
+        P.ProductSubcategoryID,
+        PSC.Name AS ProductSubcategory,
+        SUM(CASE WHEN YEAR(SOH.OrderDate) = 2012 THEN SOD.LineTotal ELSE 0 END) AS TotalSales_2012,
+		SUM(CASE WHEN YEAR(SOH.OrderDate) = 2013 THEN SOD.LineTotal ELSE 0 END) AS TotalSales_2013,
+		SUM(CASE WHEN YEAR(SOH.OrderDate) = 2013 THEN SOD.LineTotal ELSE 0 END) - SUM(CASE WHEN YEAR(SOH.OrderDate) = 2012 THEN SOD.LineTotal ELSE 0 END) AS SalesGrowth
+	FROM
+        Sales.SalesOrderDetail AS SOD
+        INNER JOIN Production.Product AS P ON P.ProductID = SOD.ProductID
+        INNER JOIN Production.ProductSubcategory AS PSC ON PSC.ProductSubcategoryID = P.ProductSubcategoryID
+        INNER JOIN Sales.SalesOrderHeader AS SOH ON SOH.SalesOrderID = SOD.SalesOrderID
+    WHERE
+        YEAR(SOH.OrderDate) IN (2012, 2013)
+    GROUP BY
+        P.ProductSubcategoryID, PSC.Name
+		)
+SELECT
+    ProductSubcategoryID,
+    ProductSubcategory,
+    TotalSales_2012,
+    TotalSales_2013,
+    SalesGrowth
+FROM
+    SalesData
+WHERE
+    TotalSales_2013 < 0 OR SalesGrowth < 0
 
 
 
