@@ -9,6 +9,7 @@ The file can be downloaded here https://github.com/Microsoft/sql-server-samples/
 ## Questions and the solutions
 ### 1. Retrieve from product tables all colours except blanks,Red, silver/black and white with unit price between £75 and £750. Rename the column standard cost price. Sort price in ascending order.
 ![1](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/ee83147f-ba5b-4978-b8f0-d80df48112b4)
+![11](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/652fb8b6-ed26-4e50-aef8-9e465b93f32f)
 
 ### 2. Find all male employees born from 1962 to 1970 and their hire date greater than 2001 and female employees born between 1972 to 1975 and hire date between 2001/2002.
 ### 3. Create a list of 10 most expensive products from the Production.Product table that have a product number beginning with ‘BK’. Include only the product ID, Name and colour.
