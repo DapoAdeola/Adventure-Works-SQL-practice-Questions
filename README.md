@@ -39,6 +39,7 @@ The file can be downloaded here https://github.com/Microsoft/sql-server-samples/
 
 ### 8. How many Distinct Jobtitle are available in Employee table
 ![8](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/900bd84a-2ce6-47d8-bc20-a3bf8c3e1c3f)
+
 ![88](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/ac052c02-3982-4cac-82d6-165f51fe3033)
 
 ### 9. Use employee table and calculate the ages of each employee at the time of hiring
@@ -47,6 +48,7 @@ The file can be downloaded here https://github.com/Microsoft/sql-server-samples/
 
 ### 10. How many employees will be due a long service award in the next 5 years if long service is 20 years?
 ![10](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/7cd910dc-e7b0-4cf1-a6a8-943f37232e97)
+
 ![1010](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/00620891-841c-4105-9102-7b5362e7f338)
 
 ### 11. How many more years does each employee have to work before reaching sentiment. If sentiment age is 65? 
