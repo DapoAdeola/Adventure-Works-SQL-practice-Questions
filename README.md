@@ -18,6 +18,7 @@ The file can be downloaded here https://github.com/Microsoft/sql-server-samples/
 
 ### 3. Create a list of 10 most expensive products from the Production.Product table that have a product number beginning with ‘BK’. Include only the product ID, Name and colour.
 ![3](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/cbb16378-8fa1-47b3-b98b-1befbb9b8696)
+
 ![33](https://github.com/DapoAdeola/Adventure-Works-SQL-practice-Questions/assets/130672823/00d990a5-b19a-4dc7-8844-ecaf02bbbe7e)
 
 ### 4. Create a list of all contact persons where the first 4 characters of the front of the last name is the same as the first four characters of the email address in small letters. Also, for all contacts whose first name and the last name begin with the same characters, create a new column called full name combining first name and the last name only. Would also like information on the length of the full name?
